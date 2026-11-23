@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carbon Valley 2061</title>
+<meta name="description" content="Speculative climate fiction from Kenya's Rift Valley, 2061. Drag through time, open the documents left behind.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Onest:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== MAP ===== -->
+  <svg id="map" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice" aria-label="Map of the Rift Valley between Lake Naivasha and Mount Suswa">
+    <defs>
+      <pattern id="concession" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="10" height="10" fill="var(--concession-bg)"/>
+        <rect width="2" height="10" fill="var(--concession)"/>
+      </pattern>
+      <radialGradient id="steam"><stop offset="0" stop-color="var(--steam)" stop-opacity=".9"/><stop offset="1" stop-color="var(--steam)" stop-opacity="0"/></radialGradient>
+    </defs>
+
+    <rect x="-200" y="-200" width="1400" height="1100" fill="var(--land)"/>
+
+    <!-- rift floor and escarpments -->
+    <path d="M150,-50 C190,120 170,260 210,420 C240,540 220,640 250,760 L780,760 C760,620 790,520 760,400 C735,280 770,140 740,-50 Z" fill="var(--floor)"/>
+    <g class="contour">
+      <path d="M140,-50 C180,120 160,260 200,420 C230,540 210,640 240,760"/>
+      <path d="M118,-50 C158,120 138,260 178,420 C208,540 188,640 218,760"/>
+      <path d="M96,-50 C136,120 116,260 156,420 C186,540 166,640 196,760"/>
+      <path d="M750,-50 C780,140 745,280 770,400 C800,520 770,620 790,760"/>
+      <path d="M772,-50 C802,140 767,280 792,400 C822,520 792,620 812,760"/>
+      <path d="M794,-50 C824,140 789,280 814,400 C844,520 814,620 834,760"/>
+    </g>
+    <text class="feature" x="105" y="330" transform="rotate(-82 105 330)">MAU ESCARPMENT</text>
+    <text class="feature" x="835" y="250" transform="rotate(80 835 250)">KIKUYU ESCARPMENT</text>
+
+    <!-- volcanoes -->
+    <g class="crater" transform="translate(552 272)"><circle r="46" class="cone"/><circle r="30" class="cone2"/><circle r="17" class="rim"/></g>
+    <text class="place" x="552" y="338">Mt Longonot</text>
+    <g class="crater" transform="translate(452 486)"><circle r="62" class="cone"/><circle r="42" class="cone2"/><circle r="26" class="rim"/><circle r="11" class="cone2"/></g>
+    <text class="place" x="452" y="570">Mt Suswa</text>
+
+    <!-- Lake Naivasha -->
+    <path class="lake" d="M392,96 C420,70 488,74 512,104 C534,132 520,168 500,188 C478,210 440,214 416,198 C384,178 362,124 392,96 Z"/>
+    <path class="lake" d="M500,88 C512,82 524,90 520,100 C514,108 500,104 500,88 Z"/>
+    <text class="water" x="452" y="146">Lake Naivasha</text>
+
+    <!-- roads -->
+    <g class="road">
+      <path d="M1000,612 C930,600 860,560 800,520 C740,470 700,420 690,368 C680,320 640,260 600,220 C560,180 540,90 560,-30"/>
+      <path d="M690,368 C640,380 560,380 480,368 C420,360 330,380 240,420 C180,446 100,470 -20,480"/>
+    </g>
+    <g class="road-in">
+      <path d="M1000,612 C930,600 860,560 800,520 C740,470 700,420 690,368 C680,320 640,260 600,220 C560,180 540,90 560,-30"/>
+      <path d="M690,368 C640,380 560,380 480,368 C420,360 330,380 240,420 C180,446 100,470 -20,480"/>
+    </g>
+    <text class="place small" x="702" y="360">Mai Mahiu</text>
+    <text class="place small" x="586" y="206">Naivasha</text>
+
+    <!-- grazing routes (fade as the valley fills) -->
+    <g id="routes" class="route">
+      <path d="M352,300 C360,350 380,400 410,440"/>
+      <path d="M352,300 C320,330 300,380 320,440 C330,470 360,500 392,510"/>
+      <path d="M352,300 C400,300 470,300 520,320"/>
+    </g>
+
+    <!-- concession fences (appear with the lease) -->
+    <path id="lease1" class="lease" d="M372,322 L520,330 L540,420 L500,428 L470,418 L400,428 L360,400 Z"/>
+    <path id="lease2" class="lease" d="M300,420 L380,430 L392,470 L380,540 L330,560 L282,520 Z"/>
+
+    <!-- fan walls are drawn here by script -->
+    <g id="fans"></g>
+
+    <!-- geothermal field -->
+    <g id="olkaria">
+      <circle class="steam s1" cx="402" cy="256" r="14" fill="url(#steam)"/>
+      <circle class="steam s2" cx="420" cy="246" r="12" fill="url(#steam)"/>
+      <circle class="steam s3" cx="390" cy="244" r="10" fill="url(#steam)"/>
+      <rect x="396" y="258" width="14" height="9" rx="1.5" class="plant"/>
+    </g>
+    <text class="place" x="406" y="234">Olkaria</text>
+    <text class="place small" x="330" y="276" text-anchor="end">Hell’s Gate</text>
+
+    <!-- AI data centres (appear 2044) -->
+    <g id="dcs">
+      <rect x="440" y="262" width="22" height="14" rx="2"/>
+      <rect x="466" y="262" width="22" height="14" rx="2"/>
+      <rect x="440" y="280" width="48" height="10" rx="2"/>
+      <text class="dc-label" x="464" y="304">DATA CENTRES</text>
+    </g>
+
+    <!-- homestead -->
+    <g id="enkang" transform="translate(352 300)">
+      <circle r="11" class="boma"/>
+      <circle r="3" cx="-3" cy="-2" class="hut"/><circle r="3" cx="4" cy="2" class="hut"/><circle r="2.5" cx="-2" cy="5" class="hut"/>
+    </g>
+
+    <!-- document pins -->
+    <g id="pins"></g>
+  </svg>
+
+  <!-- ===== HUD ===== -->
+  <header class="hud-top">
+    <div class="year-card">
+      <span class="brand">Carbon Valley</span>
+      <span class="year" id="yearBig">2026</span>
+      <span class="era" id="era">today</span>
+    </div>
+    <nav class="menu" aria-label="Archive">
+      <button data-open="story">Story</button>
+      <button data-open="docs">Documents</button>
+      <button data-open="research">Research</button>
+      <button data-open="team">Team</button>
+    </nav>
+  </header>
+
+  <aside class="meter" aria-live="polite">
+    <div><span class="k">Valley removes</span><span class="v" id="mRemoved">0</span><span class="u">Mt CO₂ / yr</span></div>
+    <div><span class="k">World emits</span><span class="v" id="mEmitted">37.4</span><span class="u">Gt CO₂ / yr</span></div>
+    <div class="ratio"><span id="mRatio">The valley cancels 0% of the world’s emissions</span></div>
+    <span class="tag" id="mTag">real</span>
+  </aside>
+
+  <!-- off-map destinations -->
+  <button class="edge edge-n" data-doc="5" aria-label="Open Field Notes from the Ice, Greenland">
+    <span class="arrow">↑</span><span>Greenland · 9,900 km</span>
+  </button>
+  <button class="edge edge-s" data-doc="2" aria-label="Open The Hearing, Arusha">
+    <span>Arusha · 240 km</span><span class="arrow">↓</span>
+  </button>
+
+  <!-- ===== DIALOG ===== -->
+  <div class="dialog" id="dialog" hidden>
+    <span class="dialog-tag" id="dTag">real</span>
+    <p id="dText"></p>
+    <span class="dialog-src" id="dSrc"></span>
+    <button class="dialog-next" id="dNext" aria-label="Dismiss">▼</button>
+  </div>
+
+  <!-- ===== SCRUBBER ===== -->
+  <div class="scrubber">
+    <button class="play" id="play" aria-label="Play through the years">▶</button>
+    <div class="ruler" id="ruler" tabindex="0" role="slider" aria-label="Year" aria-valuemin="2008" aria-valuemax="2061" aria-valuenow="2026">
+      <div class="track" id="track"></div>
+      <div class="needle"></div>
+    </div>
+    <p class="hint">Drag the timeline</p>
+  </div>
+
+  <!-- ===== SHEET ===== -->
+  <section class="sheet" id="sheet" aria-hidden="true">
+    <div class="grip" id="grip"><span></span></div>
+    <button class="close" id="close" aria-label="Close">×</button>
+    <div class="sheet-body" id="sheetBody"></div>
+  </section>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
