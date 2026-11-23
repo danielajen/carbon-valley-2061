@@ -63,7 +63,8 @@
   --dialog: #232A27; --dialog-ink: #E8EDE9; --real: #5CC49A; --imagined: #E8875E; --needle: #E8EDE9;
   color-scheme: dark;
 }
-.menu .theme { width: 36px; padding: 8px 0; font-size: 16px; line-height: 1; }
+.theme { flex: none; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--ui); box-shadow: var(--shadow); font-size: 19px; line-height: 1; order: 3; }
+.theme:hover { background: var(--ui-line); }
 
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
@@ -122,6 +123,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; pointer-events: none;
 }
 .hud-top > * { pointer-events: auto; }
+.hud-top .menu { margin-left: auto; }
 .year-card { background: var(--ui); border-radius: 16px; box-shadow: var(--shadow); padding: 10px 16px 12px; display: grid; line-height: 1; min-width: 132px; }
 .brand { font: 600 11px var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ui-muted); }
 .year { font: 600 40px var(--f-num); letter-spacing: -.02em; margin-top: 6px; font-variant-numeric: tabular-nums; }
@@ -221,9 +223,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .meter .ratio { font-size: 12px; }
   .year { font-size: 34px; }
   .year-card { min-width: 0; padding: 8px 12px 10px; }
-  .menu { max-width: 190px; }
-  .menu button { padding: 7px 10px; font-size: 13px; }
-  .edge-n { top: calc(env(safe-area-inset-top, 0px) + 126px); left: var(--gl); transform: none; padding: 7px 11px; font-size: 12px; }
+  .hud-top { gap: 8px; }
+  .year-card { flex: none; }
+  .menu { max-width: 150px; justify-content: center; }
+  .menu button { padding: 7px 8px; font-size: 12.5px; }
+  .theme { width: 42px; height: 42px; font-size: 18px; }
+  .edge-n { top: calc(env(safe-area-inset-top, 0px) + 128px); left: var(--gl); transform: none; padding: 7px 11px; font-size: 12px; }
   .menu { gap: 2px; }
   .edge-s { display: none; }
   .dialog { bottom: 128px; left: var(--gl); right: var(--gr); width: auto; }
