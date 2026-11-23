@@ -138,7 +138,35 @@ const STORY = `
     <div><kbd>●</kbd><span>Tap a pin to read a story</span></div>
     <div><kbd>?</kbd><span>Before 2026 is real. After 2026 is made up.</span></div>
   </div>
-  <button class="begin" data-begin>Start in 2008</button>`;
+  <button class="begin" data-begin>Start in 2008</button>
+  <h3>Map key</h3>
+  <ul class="key">
+    <li><i class="k-pin"></i>A story. Grey means it hasn’t happened yet.</li>
+    <li><i class="k-fan"></i>Clean-up machines</li>
+    <li><i class="k-lease"></i>Land rented to the clean-up company</li>
+    <li><i class="k-route"></i>Old cattle paths</li>
+    <li><i class="k-dc"></i>AI data centres</li>
+    <li><i class="k-boma"></i>Koko’s family home</li>
+  </ul>
+  <h3>Timeline key</h3>
+  <ul class="key">
+    <li><i class="k-real"></i>Something real that happened</li>
+    <li><i class="k-made"></i>Something made up</li>
+    <li><i class="k-future"></i>Years that haven’t happened yet</li>
+    <li><i class="k-stripes"></i>Top colours: how hot each real year was (blue cool, red hot)</li>
+  </ul>
+  <h3>Words to know</h3>
+  <dl class="words">
+    <dt>Maasai</dt><dd>A people in Kenya and Tanzania who have herded cattle on this land for generations.</dd>
+    <dt>Rift Valley</dt><dd>A huge valley in Kenya with volcanoes and underground steam. Our story happens here.</dd>
+    <dt>Olkaria</dt><dd>A real place in the valley where steam from underground makes electricity.</dd>
+    <dt>Clean-up machines</dt><dd>Giant fans that pull pollution (carbon dioxide) out of the air and bury it underground. They’re real, but still tiny today.</dd>
+    <dt>Carbon credits</dt><dd>What a company buys so it can say its pollution was cancelled somewhere else, without polluting less.</dd>
+    <dt>Net zero</dt><dd>A promise that pollution put out equals pollution taken away.</dd>
+    <dt>Data centres</dt><dd>Huge buildings full of computers that run AI. They use a lot of power and water.</dd>
+    <dt>Reparations</dt><dd>Paying people back for harm done to them.</dd>
+    <dt>Camp Century</dt><dd>A real US Army base built inside Greenland’s ice in the 1960s. Its waste is still buried there.</dd>
+  </dl>`;
 
 const RESEARCH = `
   <p class="eyebrow">Behind the story</p>
