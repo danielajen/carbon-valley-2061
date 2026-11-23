@@ -4,7 +4,7 @@ Speculative climate fiction for Anthro 2288A, Module 3, Group 1. A map of Kenya'
 
 ## Adding a document
 
-All text lives in `data.js`. To add a member's document, find it in `DOCS` and replace `body: null` with their text as HTML (one `<p>` per paragraph). Then remove its `pending` entry, or set it to `null`, and push.
+All text lives in `data.js`. To add a member's document, find it in `DOCS` and replace `body: null` with their text as HTML (one `<p>` per paragraph). Then remove its `pending` entry, or set it to `null`, run `./stamp.sh` so browsers pick up the new files, and push.
 
 ## Running locally
 
