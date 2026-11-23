@@ -118,7 +118,7 @@
   // drag with momentum, then settle on a whole year
   let drag = null, raf = 0;
   ruler.addEventListener("pointerdown", (e) => {
-    cancelAnimationFrame(raf); stopPlay();
+    cancelAnimationFrame(raf); stopPlay(); pending = null;
     drag = { x: e.clientX, y: year, t: performance.now(), v: 0, lastX: e.clientX };
     ruler.setPointerCapture(e.pointerId);
     ruler.classList.add("dragging");
@@ -148,7 +148,7 @@
   ruler.addEventListener("pointerup", release);
   ruler.addEventListener("pointercancel", release);
   ruler.addEventListener("wheel", (e) => {
-    e.preventDefault(); stopPlay(); cancelAnimationFrame(raf);
+    e.preventDefault(); stopPlay(); cancelAnimationFrame(raf); pending = null;
     setYear(year + (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) / PX, true);
     clearTimeout(ruler._w); ruler._w = setTimeout(settle, 140);
   }, { passive: false });
@@ -212,14 +212,20 @@
 
     const removed = lerp(REMOVED_MT, Y);
     const emitted = Y <= NOW ? 37.4 : lerp(EMITTED_GT, Y);
-    $("#mRemoved").textContent = fmt(removed);
-    $("#mEmitted").textContent = fmt(emitted, 1);
-    const pct = removed / (emitted * 1000) * 100;
-    $("#mRatio").textContent = Y >= 2058
-      ? `Reported to cancel ${fmt(pct, 1)}% of world emissions. Measured: unknown.`
-      : `The valley cancels ${fmt(pct, 1)}% of world emissions`;
+    // plain words: both numbers in billions of tonnes, plus "x of every 1,000 tonnes"
+    const removedB = removed / 1000;
+    $("#mEmitted").textContent = fmt(emitted);
+    $("#mRemoved").textContent = removed === 0 ? "0" : removedB < 0.05 ? "almost 0" : fmt(removedB, 1);
+    const share = removed / (emitted * 1000);
+    $("#mBar").style.width = removed === 0 ? "0" : `max(3px, ${share * 100}%)`;
+    const per1000 = Math.round(share * 1000);
+    let line = removed === 0 ? "The valley isn’t cleaning up anything yet."
+      : per1000 < 1 ? "The machines clean up less than 1 of every 1,000 tonnes."
+      : `The machines clean up about ${per1000} of every 1,000 tonnes.`;
+    if (Y >= 2058) line += " But nobody knows if that number is true.";
+    $("#mRatio").textContent = line;
     const tag = $("#mTag");
-    tag.textContent = imagined ? "imagined" : Y <= NOW && Y >= 2024 ? "real · 2024 level" : "real";
+    tag.textContent = imagined ? "Made up · future" : "Real";
     tag.classList.toggle("imagined", imagined);
 
     const ev = evYears.get(Y);

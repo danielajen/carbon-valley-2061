@@ -119,10 +119,11 @@
   </header>
 
   <aside class="meter" aria-live="polite">
-    <div><span class="k">Valley removes</span><span class="v" id="mRemoved">0</span><span class="u">Mt CO₂ / yr</span></div>
-    <div><span class="k">World emits</span><span class="v" id="mEmitted">37.4</span><span class="u">Gt CO₂ / yr</span></div>
-    <div class="ratio"><span id="mRatio">The valley cancels 0% of the world’s emissions</span></div>
-    <span class="tag" id="mTag">real</span>
+    <div class="row"><span class="k">Pollution going into the sky</span><span class="v bad" id="mEmitted">37</span><span class="u">billion tonnes a year</span></div>
+    <div class="row"><span class="k">Pulled back out by the valley</span><span class="v good" id="mRemoved">0</span><span class="u">billion tonnes a year</span></div>
+    <div class="bar" aria-hidden="true"><span id="mBar"></span></div>
+    <p class="ratio" id="mRatio">The valley isn’t cleaning up anything yet.</p>
+    <span class="tag" id="mTag">Real</span>
   </aside>
 
   <!-- off-map destinations -->
