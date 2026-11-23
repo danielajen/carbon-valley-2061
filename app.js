@@ -207,7 +207,8 @@
     $("#yearBig").textContent = Y;
     const imagined = Y > NOW;
     const era = $("#era");
-    era.textContent = Y < NOW ? `${NOW - Y} years ago` : Y === NOW ? "today" : `${Y - NOW} years from now`;
+    const yrs = (n) => `${n} year${n === 1 ? "" : "s"}`;
+    era.textContent = Y < NOW ? `${yrs(NOW - Y)} ago` : Y === NOW ? "today" : `${yrs(Y - NOW)} from now`;
     era.classList.toggle("imagined", imagined);
 
     const removed = lerp(REMOVED_MT, Y);
