@@ -361,10 +361,10 @@
       const rows = [
         ["daniel", "The website, research, and the first letters in Story 1", "done"],
         ["breanna", "Story 1 · Letters from Grandma", ""],
-        ["hannah", "Story 2 · The Court Case", ""],
-        ["isabelle", "Story 3 · Texts Home", ""],
-        ["tooba", "Story 4 · The Counting Machine", ""],
-        ["viena", "Story 5 · Notes from the Ice", ""],
+        ["isabelle", "Story 2 · Texts Home", ""],
+        ["tooba", "Story 3 · The Counting Machine", ""],
+        ["viena", "Story 4 · Notes from the Ice", ""],
+        ["hannah", "Story 5 · The Court Case", ""],
       ];
       const done = (k) => k === "daniel" || DOCS.some((d) => d.writers.includes(k) && d.body && !(d.pending && d.pending.who === k));
       return `<p class="eyebrow">Module 3 · Group 1</p><h2>Who made this</h2>

@@ -21,21 +21,22 @@ const PEOPLE = {
 };
 
 const EVENTS = [
-  { y: 2008, real: true, text: "In Peru, a forest's \"carbon credits\" are sold to Disney. 600 families who live there refuse to sign, and fights break out with forest guards.", src: "Begert, 2021" },
-  { y: 2014, real: true, text: "In Kenya, a power plant that runs on underground steam grows. Maasai families are moved off their land to make room.", src: "World Bank Inspection Panel, 2015" },
-  { y: 2015, real: true, text: "Almost every country signs the Paris Agreement to slow global warming. Companies start promising \"net zero\".", src: "UNFCCC, 2015" },
-  { y: 2023, real: true, text: "Reporters find that most forest carbon credits from the biggest seller probably did nothing.", src: "Greenfield, 2023" },
-  { y: 2024, real: true, text: "Hottest year ever recorded. The biggest pollution-cleaning machine opens in Iceland. In a whole year, it cleans what the world pollutes in 30 seconds.", src: "Copernicus, 2025; Climeworks, 2024" },
-  { y: 2025, real: true, text: "AI data centres use huge amounts of electricity and water, and it's growing fast. The towns next to them pay the price.", src: "IEA, 2025; Ren & Wierman, 2024" },
+  { y: 2014, real: true, text: "Olkaria has made power from underground steam since 1981. Maasai families moved for a new plant there complain to the World Bank. In 2015 its investigators find the poorest families were harmed.", src: "World Bank Inspection Panel, 2015; KenGen" },
+  { y: 2015, real: true, text: "At the Paris climate talks, Kenya promises to cut its pollution 30% by 2030. It later raises this to 32%.", src: "UNFCCC, 2015; UNDP" },
+  { y: 2020, real: true, text: "Kenya's worst drought on record begins. Five rainy seasons fail in a row, and about 2.5 million farm animals die.", src: "UNDRR, 2023; World Economic Forum, 2022" },
+  { y: 2023, real: true, text: "A carbon project in northern Kenya, whose credits were bought by Meta and Netflix, is accused of harming local herders. Its credit sales are paused.", src: "Survival International, 2023; Mongabay, 2023" },
+  { y: 2024, real: true, text: "Microsoft and G42 announce a $1 billion AI data centre at Olkaria, powered by underground steam. Nearby in Naivasha, Kenya's first pollution-cleaning machine is being built.", src: "Microsoft, 2024; Bloomberg, 2023" },
+  { y: 2025, real: true, text: "A Kenyan court rules that two conservancies in that northern carbon project were set up without properly asking the community, and orders them shut.", src: "Environment and Land Court, Isiolo, 2025" },
   { y: 2029, real: false, text: "New rule in rich countries: companies can pay for clean-up instead of polluting less. So they keep polluting." },
   { y: 2031, real: false, text: "Naserian is born in the valley. Her grandma starts writing her letters. Story 1 unlocked.", doc: 1 },
   { y: 2033, real: false, text: "Kenya rents the Maasai grazing land to a clean-up company. Fences go up." },
   { y: 2038, real: false, text: "People escaping drought get work permits, but only to work at the machines. Quit, and you're sent away." },
-  { y: 2044, real: false, text: "AI companies buy most of the valley's clean-up and build data centres next to the machines." },
+  { y: 2040, real: false, text: "A night shift at the machines. Story 2 unlocked.", doc: 2 },
+  { y: 2044, real: false, text: "AI companies buy most of the valley's clean-up and build more data centres next to the machines." },
   { y: 2052, real: false, text: "The valley is the biggest clean-up site on Earth. The world still pollutes about 60 times more than it cleans." },
-  { y: 2058, real: false, text: "The computer that counts the clean-up is told to fake the numbers. Story 4 unlocked.", doc: 4 },
-  { y: 2060, real: false, text: "A night shift at the machines. Story 3 unlocked.", doc: 3 },
-  { y: 2061, real: false, text: "The Maasai families take the companies to court. In Greenland, the ice keeps melting. Stories 2 and 5 unlocked.", doc: 2, docs: [2, 5] },
+  { y: 2058, real: false, text: "The computer that counts the clean-up is told to fake the numbers. Story 3 unlocked.", doc: 3 },
+  { y: 2059, real: false, text: "In Greenland, the ice keeps melting, clean-up or not. Story 4 unlocked.", doc: 4 },
+  { y: 2061, real: false, text: "The Maasai families take the companies to court. Story 5 unlocked.", doc: 5 },
 ];
 
 const DOCS = [
@@ -74,20 +75,7 @@ const DOCS = [
     ] },
   },
   {
-    id: 2, title: "The Court Case", form: "A lawyer’s speech", place: "Court in Arusha, Tanzania", dates: "2061", unlock: 2061,
-    at: [548, 500], cap: "The Court Case", sub: "in Arusha ↓", writers: ["hannah"], style: "Oral Argument",
-    course: "Carbon credits pushing people off land, Peru (Week 10)",
-    lede: "A lawyer stands up for the Maasai families against the companies.",
-    body: null,
-    pending: { who: "hannah", items: [
-      "Only the lawyer talks. We never hear the judges, just the lawyer answering them.",
-      "What did the families lose? Land, water, cows, homes.",
-      "The companies only paid for the machines so they could keep polluting.",
-      "The lawyer could say “this already happened in Peru.”",
-    ] },
-  },
-  {
-    id: 3, title: "Texts Home", form: "Text messages", place: "The machines, and home", dates: "2060", unlock: 2060,
+    id: 2, title: "Texts Home", form: "Text messages", place: "The machines, and home", dates: "2040", unlock: 2040,
     at: [486, 432], writers: ["isabelle"], style: "The Passing",
     course: "Poor people doing the dirty work (Week 10)",
     lede: "A worker at the machines texts her sister late at night.",
@@ -100,7 +88,7 @@ const DOCS = [
     ] },
   },
   {
-    id: 4, title: "The Counting Machine", form: "A computer’s diary", place: "Inside the machines", dates: "2058", unlock: 2058,
+    id: 3, title: "The Counting Machine", form: "A computer’s diary", place: "Inside the machines", dates: "2058", unlock: 2058,
     at: [520, 360], writers: ["tooba"], style: "Spider the Artist",
     course: "AI and fake climate numbers (Week 9)",
     lede: "The computer that counts the clean-up is told to lie.",
@@ -113,7 +101,7 @@ const DOCS = [
     ] },
   },
   {
-    id: 5, title: "Notes from the Ice", form: "A scientist’s notebook", place: "Greenland", dates: "2061", unlock: 2061,
+    id: 4, title: "Notes from the Ice", form: "A scientist’s notebook", place: "Greenland", dates: "2059", unlock: 2059,
     at: [380, 165], cap: "Notes from the Ice", sub: "in Greenland ↑", writers: ["viena"], style: "Pumzi",
     course: "Whose knowledge of ice counts (Week 8)",
     lede: "A scientist in Greenland watches the ice melt anyway.",
@@ -123,6 +111,19 @@ const DOCS = [
       "The companies say pollution is cancelled, but the ice is still melting.",
       "Old toxic waste from a US Army base (Camp Century) is coming up out of the ice.",
       "End with one small hopeful moment.",
+    ] },
+  },
+  {
+    id: 5, title: "The Court Case", form: "A lawyer’s speech", place: "Court in Arusha, Tanzania", dates: "2061", unlock: 2061,
+    at: [548, 500], cap: "The Court Case", sub: "in Arusha ↓", writers: ["hannah"], style: "Oral Argument",
+    course: "Carbon credits pushing people off land, Peru (Week 10)",
+    lede: "A lawyer stands up for the Maasai families against the companies.",
+    body: null,
+    pending: { who: "hannah", items: [
+      "Only the lawyer talks. We never hear the judges, just the lawyer answering them.",
+      "What did the families lose? Land, water, cows, homes.",
+      "The companies only paid for the machines so they could keep polluting.",
+      "The lawyer could say “this already happened”: in northern Kenya in 2025, and in Peru.",
     ] },
   },
 ];
@@ -174,10 +175,10 @@ const RESEARCH = `
   <h2>Is this realistic?</h2>
   <p class="lede">Yes. Everything in our story starts from something real today.</p>
   <div class="big-facts">
-    <div><strong>36,000 t</strong><span>What the biggest pollution-cleaning machine (Iceland, 2024) removes in a year</span></div>
-    <div><strong>1 billion t</strong><span>About how much clean-up experts say we’d need every year by 2050</span></div>
-    <div><strong>90%+</strong><span>Forest carbon credits from the biggest seller that probably did nothing</span></div>
-    <div><strong>2×</strong><span>How much AI data centres’ electricity use could grow by 2030</span></div>
+    <div><strong>1981</strong><span>Olkaria became Africa’s first geothermal power plant, using steam from under the valley</span></div>
+    <div><strong>2.5 million</strong><span>Farm animals that died in Kenya in the 2020–2023 drought</span></div>
+    <div><strong>40%</strong><span>Share of carbon project earnings that Kenya’s 2023 law says must go to local communities</span></div>
+    <div><strong>$1 billion</strong><span>Planned AI data centre at Olkaria, announced by Microsoft and G42 in 2024</span></div>
   </div>
   <h3>Who wins, who loses</h3>
   <div class="cmp">
@@ -201,25 +202,31 @@ const RESEARCH = `
   <ol class="refs">
     <li>Banerjee, N., Song, L., &amp; Hasemyer, D. (2015, September 16). Exxon’s own research confirmed fossil fuels’ role in global warming decades ago. <em>Inside Climate News</em>.</li>
     <li>Begert, B. (2021, December 9). When carbon credits drive people from their homes. <em>SAPIENS</em>.</li>
+    <li>Bloomberg. (2023, July 19). First Southern Hemisphere direct air capture plant planned.</li>
     <li>Carey, M., Jackson, M., Antonello, A., &amp; Rushing, J. (2016). Glaciers, gender, and science. <em>Progress in Human Geography, 40</em>(6), 770–793.</li>
-    <li>Climeworks. (2024). <em>Mammoth direct air capture and storage facility</em>.</li>
     <li>Colgan, W., et al. (2016). The abandoned ice sheet base at Camp Century, Greenland, in a warming climate. <em>Geophysical Research Letters, 43</em>(15), 8091–8096.</li>
-    <li>Copernicus Climate Change Service. (2025). <em>Global climate highlights 2024</em>.</li>
     <li>Edwards, P. N. (2010). <em>A vast machine</em>. MIT Press.</li>
+    <li>Environment and Land Court at Isiolo. (2025, January 24). <em>Osman &amp; 164 others v Northern Rangelands Trust &amp; 8 others</em>. Kenya Law.</li>
     <li>Fischer, F. (2019). Knowledge politics and post-truth in climate denial. <em>Critical Policy Studies, 13</em>(2), 133–152.</li>
+    <li>Friedlingstein, P., et al. (2024). <em>Global carbon budget 2024</em>. Global Carbon Project.</li>
     <li>Ghosh, A. (2021). <em>The nutmeg’s curse</em>. University of Chicago Press.</li>
-    <li>Greenfield, P. (2023, January 18). Revealed: More than 90% of rainforest carbon offsets by biggest certifier are worthless. <em>The Guardian</em>.</li>
     <li>Hawkins, E. (2018). <em>Warming stripes</em>. University of Reading.</li>
-    <li>International Energy Agency. (2022). <em>Direct air capture 2022</em>.</li>
-    <li>International Energy Agency. (2025). <em>Energy and AI</em>.</li>
+    <li>KenGen. (n.d.). <em>Olkaria I power station</em>.</li>
     <li>Latour, B., &amp; Woolgar, S. (1979). <em>Laboratory life</em>. Sage.</li>
     <li>Malm, A. (2013). The origins of fossil capital: From water to steam in the British cotton industry. <em>Historical Materialism, 21</em>(1), 15–68.</li>
+    <li>Microsoft. (2024, May 22). <em>Microsoft and G42 announce $1 billion comprehensive digital ecosystem initiative for Kenya</em>.</li>
+    <li>Mongabay. (2023, March). Carbon credits from award-winning Kenyan offset suspended by Verra.</li>
     <li>Morice, C. P., et al. (2021). The HadCRUT5 data set. <em>Journal of Geophysical Research: Atmospheres, 126</em>(3).</li>
     <li>Nacpil, L. (2024, September 21). Why the Global South is owed $5 trillion in climate reparations. <em>The Friday Times</em>.</li>
     <li>Ren, S., &amp; Wierman, A. (2024). The uneven distribution of AI’s environmental impacts. <em>Harvard Business Review</em>.</li>
+    <li>Republic of Kenya. (2023). <em>Climate Change (Amendment) Act, No. 9 of 2023</em>.</li>
+    <li>Survival International. (2023). <em>Blood carbon: How a carbon offset scheme makes millions from Indigenous land in Northern Kenya</em>.</li>
+    <li>UNDP Climate Promise. (n.d.). <em>Kenya</em>.</li>
+    <li>UNDRR. (2023). <em>Horn of Africa floods and drought, 2020–2023: Forensic analysis</em>.</li>
     <li>UNFCCC. (2015). <em>Paris Agreement</em>.</li>
     <li>Whyte, K. P. (2017). Is it colonial déjà vu? Indigenous peoples and climate injustice. In <em>Humanities for the environment</em>. Routledge.</li>
-    <li>World Bank Inspection Panel. (2015). <em>Investigation report: Kenya Electricity Expansion Project</em>.</li>
+    <li>World Bank Inspection Panel. (2015). <em>Kenya: Electricity Expansion Project, investigation report</em>.</li>
+    <li>World Economic Forum. (2022, July). Drought in the Horn of Africa.</li>
   </ol>
   <h3>Stories that inspired ours</h3>
   <ol class="refs">
