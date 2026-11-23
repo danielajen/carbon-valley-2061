@@ -92,7 +92,7 @@
     if (ANOMALY[y] !== undefined) s.style.background = stripe(ANOMALY[y]);
     col.appendChild(s);
     const t = document.createElement("div"); t.className = "tick"; col.appendChild(t);
-    if (y % 5 === 0 || y === END) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = y; col.appendChild(l); }
+    if (y % 5 === 0 || y === START || y === END) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = y; col.appendChild(l); }
     const ev = evYears.get(y);
     if (ev) { const d = document.createElement("div"); d.className = "ev" + (ev.real ? "" : " imagined") + (ev.doc ? " doc" : ""); col.appendChild(d); }
     track.appendChild(col);

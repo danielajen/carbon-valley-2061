@@ -2,13 +2,13 @@
 // To add a member's story: find it in DOCS below, replace `body: null` with their text,
 // and set `pending: null`.
 
-const START = 2008, NOW = 2026, END = 2061;
+const START = 2013, NOW = 2026, END = 2061;
 
 // HadCRUT5 global temperature anomaly vs 1971–2000 (Met Office), real years only
 const ANOMALY = {"2008":0.313,"2009":0.444,"2010":0.528,"2011":0.385,"2012":0.425,"2013":0.471,"2014":0.52,"2015":0.672,"2016":0.78,"2017":0.692,"2018":0.61,"2019":0.738,"2020":0.77,"2021":0.609,"2022":0.648,"2023":0.947,"2024":1.028,"2025":1.037};
 
 // Made-up curves after 2026. Points are [year, value]; values in between are interpolated.
-const REMOVED_MT = [[2008,0],[2032,0],[2033,2],[2038,40],[2044,150],[2048,280],[2052,400],[2058,430],[2061,450]];
+const REMOVED_MT = [[2013,0],[2032,0],[2033,2],[2038,40],[2044,150],[2048,280],[2052,400],[2058,430],[2061,450]];
 const EMITTED_GT = [[2026,37.4],[2029,37.0],[2035,34],[2045,28],[2052,24],[2061,21]];
 
 const PEOPLE = {
@@ -139,7 +139,7 @@ const STORY = `
     <div><kbd>●</kbd><span>Tap a pin to read a story</span></div>
     <div><kbd>?</kbd><span>Before 2026 is real. After 2026 is made up.</span></div>
   </div>
-  <button class="begin" data-begin>Start in 2008</button>
+  <button class="begin" data-begin>Start in 2013</button>
   <button class="again" data-tour>Show me how it works</button>
   <h3>Map key</h3>
   <ul class="key">
