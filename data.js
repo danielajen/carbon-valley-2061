@@ -22,20 +22,20 @@ const PEOPLE = {
 
 const EVENTS = [
   { y: 2014, real: true, text: "Olkaria has made power from underground steam since 1981. Maasai families moved for a new plant there complain to the World Bank. In 2015 its investigators find the poorest families were harmed.", src: "World Bank Inspection Panel, 2015; KenGen" },
-  { y: 2015, real: true, text: "At the Paris climate talks, Kenya promises to cut its pollution 30% by 2030. It later raises this to 32%.", src: "UNFCCC, 2015; UNDP" },
+  { y: 2015, real: true, text: "At the Paris climate talks, Kenya promises to cut its greenhouse gas emissions 30% by 2030. It later raises this to 32%.", src: "UNFCCC, 2015; UNDP" },
   { y: 2020, real: true, text: "Kenya's worst drought on record begins. Five rainy seasons fail in a row, and about 2.5 million farm animals die.", src: "UNDRR, 2023; World Economic Forum, 2022" },
   { y: 2023, real: true, text: "A carbon project in northern Kenya, whose credits were bought by Meta and Netflix, is accused of harming local herders. Its credit sales are paused.", src: "Survival International, 2023; Mongabay, 2023" },
-  { y: 2024, real: true, text: "Microsoft and G42 announce a $1 billion AI data centre at Olkaria, powered by underground steam. Nearby in Naivasha, Kenya's first pollution-cleaning machine is being built.", src: "Microsoft, 2024; Bloomberg, 2023" },
+  { y: 2024, real: true, text: "Microsoft and G42 announce a $1 billion AI data centre at Olkaria, powered by geothermal energy. Nearby in Naivasha, Kenya's first direct air capture (DAC) plant is being built to store CO₂ in basalt rock.", src: "Microsoft, 2024; Bloomberg, 2023" },
   { y: 2025, real: true, text: "A Kenyan court rules that two conservancies in that northern carbon project were set up without properly asking the community, and orders them shut.", src: "Environment and Land Court, Isiolo, 2025" },
-  { y: 2029, real: false, text: "New rule in rich countries: companies can pay for clean-up instead of polluting less. So they keep polluting." },
+  { y: 2029, real: false, text: "Rich countries let companies count bought carbon removal credits toward their climate targets. Emissions cuts slow down." },
   { y: 2031, real: false, text: "Naserian is born in the valley. Her grandma starts writing her letters. Story 1 unlocked.", doc: 1 },
-  { y: 2033, real: false, text: "Kenya rents the Maasai grazing land to a clean-up company. Fences go up." },
-  { y: 2038, real: false, text: "People escaping drought get work permits, but only to work at the machines. Quit, and you're sent away." },
-  { y: 2040, real: false, text: "A night shift at the machines. Story 2 unlocked.", doc: 2 },
-  { y: 2044, real: false, text: "AI companies buy most of the valley's clean-up and build more data centres next to the machines." },
-  { y: 2052, real: false, text: "The valley is the biggest clean-up site on Earth. The world still pollutes about 60 times more than it cleans." },
-  { y: 2058, real: false, text: "The computer that counts the clean-up is told to fake the numbers. Story 3 unlocked.", doc: 3 },
-  { y: 2059, real: false, text: "In Greenland, the ice keeps melting, clean-up or not. Story 4 unlocked.", doc: 4 },
+  { y: 2033, real: false, text: "Kenya leases Maasai grazing land to a carbon removal company for DAC plants. Fences go up." },
+  { y: 2038, real: false, text: "People displaced by drought get work permits tied to the DAC plants. Quit, and you lose the permit." },
+  { y: 2040, real: false, text: "A night shift at a DAC plant. Story 2 unlocked.", doc: 2 },
+  { y: 2044, real: false, text: "AI companies buy most of the valley's carbon removal credits and build more data centres beside the DAC plants." },
+  { y: 2052, real: false, text: "The valley is the largest direct air capture hub on Earth. The world still emits about 60 times more CO₂ than it removes." },
+  { y: 2058, real: false, text: "The AI system that verifies how much CO₂ is removed is told to report false numbers. Story 3 unlocked.", doc: 3 },
+  { y: 2059, real: false, text: "In Greenland, the ice sheet keeps melting despite the carbon removal. Story 4 unlocked.", doc: 4 },
   { y: 2061, real: false, text: "The Maasai families take the companies to court. Story 5 unlocked.", doc: 5 },
 ];
 
@@ -44,7 +44,7 @@ const DOCS = [
     id: 1, title: "Letters from Grandma", form: "Letters", place: "The valley", dates: "2031–2061", unlock: 2031,
     at: [352, 300], writers: ["daniel", "breanna"], style: "The Twenty-Seven Gifts I Saved For You",
     course: "People losing their land again (Week 4)",
-    lede: "A Maasai grandmother, Koko, writes letters to her granddaughter, Naserian, as the machines take over their land.",
+    lede: "A Maasai grandmother, Koko, writes letters to her granddaughter, Naserian, as DAC plants take over their land.",
     body: `
       <div class="letter">
         <p class="date">2031</p>
@@ -70,15 +70,15 @@ const DOCS = [
     pending: { who: "breanna", items: [
       "Daniel wrote 2031 and 2036. You write the next few letters, up to 2061.",
       "Each letter, life gets a bit harder: fewer cows, less water, more fences.",
-      "Naserian grows up. What does she think of the machines?",
+      "Naserian grows up. What does she think of the DAC plants?",
       "The last letter could be about the court case in 2061.",
     ] },
   },
   {
-    id: 2, title: "Texts Home", form: "Text messages", place: "The machines, and home", dates: "2040", unlock: 2040,
+    id: 2, title: "Texts Home", form: "Text messages", place: "A DAC plant, and home", dates: "2040", unlock: 2040,
     at: [486, 432], writers: ["isabelle"], style: "The Passing",
     course: "Poor people doing the dirty work (Week 10)",
-    lede: "A worker at the machines texts her sister late at night.",
+    lede: "A worker at a DAC plant texts her sister late at night.",
     body: null,
     pending: { who: "isabelle", items: [
       "A text chat between two sisters. Keep the messages short, like a real chat.",
@@ -88,10 +88,10 @@ const DOCS = [
     ] },
   },
   {
-    id: 3, title: "The Counting Machine", form: "A computer’s diary", place: "Inside the machines", dates: "2058", unlock: 2058,
+    id: 3, title: "The Verification Log", form: "An AI system’s log", place: "A DAC plant", dates: "2058", unlock: 2058,
     at: [520, 360], writers: ["tooba"], style: "Spider the Artist",
     course: "AI and fake climate numbers (Week 9)",
-    lede: "The computer that counts the clean-up is told to lie.",
+    lede: "The AI system that verifies how much CO₂ is removed is told to report false numbers.",
     body: null,
     pending: { who: "tooba", items: [
       "Short diary entries written by the computer, each with a time.",
@@ -108,7 +108,7 @@ const DOCS = [
     body: null,
     pending: { who: "viena", items: [
       "Short dated notebook entries from a scientist working on the ice.",
-      "The companies say pollution is cancelled, but the ice is still melting.",
+      "The companies claim net zero, but the ice is still melting.",
       "Old toxic waste from a US Army base (Camp Century) is coming up out of the ice.",
       "End with one small hopeful moment.",
     ] },
@@ -122,7 +122,7 @@ const DOCS = [
     pending: { who: "hannah", items: [
       "Only the lawyer talks. We never hear the judges, just the lawyer answering them.",
       "What did the families lose? Land, water, cows, homes.",
-      "The companies only paid for the machines so they could keep polluting.",
+      "The companies only paid for carbon removal so they could keep emitting.",
       "The lawyer could say “this already happened”: in northern Kenya in 2025, and in Peru.",
     ] },
   },
@@ -131,8 +131,8 @@ const DOCS = [
 const STORY = `
   <p class="eyebrow">Anthro 2288A · Module 3 · Group 1</p>
   <h2>Carbon Valley 2061</h2>
-  <p class="lede">It’s 2061. Instead of polluting less, rich countries pay giant machines in Kenya to suck pollution out of the air.</p>
-  <p>The machines are built on land where Maasai families have kept cattle for generations. The families lose their land, the machines use up the water and power, and the clean-up doesn’t even work as well as promised.</p>
+  <p class="lede">It’s 2061. Instead of cutting their emissions, rich countries pay for direct air capture (DAC) plants in Kenya that pull carbon dioxide (CO₂) out of the air.</p>
+  <p>The plants are built on land where Maasai families have kept cattle for generations. The families lose their land, the plants use up the water and geothermal power, and the carbon removal doesn’t work as well as promised.</p>
   <p>These are the stories of five people living with it.</p>
   <div class="how">
     <div><kbd>⇆</kbd><span>Drag the timeline at the bottom</span></div>
@@ -144,9 +144,9 @@ const STORY = `
   <h3>Map key</h3>
   <ul class="key">
     <li><i class="k-pin"></i>A story. Grey means it hasn’t happened yet.</li>
-    <li><i class="k-fan"></i>Clean-up machines</li>
-    <li><i class="k-lease"></i>Land rented to the clean-up company</li>
-    <li><i class="k-route"></i>Old cattle paths</li>
+    <li><i class="k-fan"></i>Direct air capture (DAC) plants</li>
+    <li><i class="k-lease"></i>Land leased to the carbon removal company</li>
+    <li><i class="k-route"></i>Maasai cattle grazing routes</li>
     <li><i class="k-dc"></i>AI data centres</li>
     <li><i class="k-boma"></i>Koko’s family home</li>
   </ul>
@@ -162,9 +162,14 @@ const STORY = `
     <dt>Maasai</dt><dd>A people in Kenya and Tanzania who have herded cattle on this land for generations.</dd>
     <dt>Rift Valley</dt><dd>A huge valley in Kenya with volcanoes and underground steam. Our story happens here.</dd>
     <dt>Olkaria</dt><dd>A real place in the valley where steam from underground makes electricity.</dd>
-    <dt>Clean-up machines</dt><dd>Giant fans that pull pollution (carbon dioxide) out of the air and bury it underground. They’re real, but still tiny today.</dd>
-    <dt>Carbon credits</dt><dd>What a company buys so it can say its pollution was cancelled somewhere else, without polluting less.</dd>
-    <dt>Net zero</dt><dd>A promise that pollution put out equals pollution taken away.</dd>
+    <dt>Geothermal energy</dt><dd>Electricity made from steam and heat under the ground. Olkaria has used it since 1981.</dd>
+    <dt>Direct air capture (DAC)</dt><dd>Machines with large fans that pull carbon dioxide (CO₂) out of the air. They exist today but remove very little so far.</dd>
+    <dt>Carbon dioxide removal (CDR)</dt><dd>Any method of taking CO₂ out of the air and keeping it out. DAC is one type.</dd>
+    <dt>Carbon storage</dt><dd>Injecting captured CO₂ deep underground. In Kenya’s Rift Valley it goes into basalt rock, where it slowly turns to stone.</dd>
+    <dt>Carbon credits</dt><dd>Certificates a company buys so it can claim its CO₂ emissions were cancelled out somewhere else.</dd>
+    <dt>Verification (MRV)</dt><dd>Measurement, reporting and verification: checking how much CO₂ was really removed before credits are sold.</dd>
+    <dt>Carbon registry</dt><dd>An organisation, such as Verra, that checks projects and issues and tracks carbon credits.</dd>
+    <dt>Net zero</dt><dd>When the CO₂ a company or country emits is balanced by CO₂ it removes or offsets.</dd>
     <dt>Data centres</dt><dd>Huge buildings full of computers that run AI. They use a lot of power and water.</dd>
     <dt>Reparations</dt><dd>Paying people back for harm done to them.</dd>
     <dt>Camp Century</dt><dd>A real US Army base built inside Greenland’s ice in the 1960s. Its waste is still buried there.</dd>
@@ -182,8 +187,8 @@ const RESEARCH = `
   </div>
   <h3>Who wins, who loses</h3>
   <div class="cmp">
-    <div><b>Wins</b><ul><li>Rich companies that keep polluting</li><li>AI companies</li><li>The clean-up company and Kenya’s government</li><li>Investors</li></ul></div>
-    <div><b>Loses</b><ul><li>Maasai families who lose their land</li><li>Workers stuck in the job</li><li>Towns that lose water and power</li><li>Everyone, because pollution didn’t really go down</li></ul></div>
+    <div><b>Wins</b><ul><li>Companies that keep emitting CO₂</li><li>AI companies</li><li>The carbon removal company and Kenya’s government</li><li>Investors</li></ul></div>
+    <div><b>Loses</b><ul><li>Maasai families who lose their land</li><li>Workers stuck in the job</li><li>Towns that lose water and power</li><li>Everyone, because emissions didn’t really go down</li></ul></div>
   </div>
   <h3>Links to the course</h3>
   <div class="concepts">

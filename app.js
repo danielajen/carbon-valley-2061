@@ -235,10 +235,10 @@
     const share = removed / (emitted * 1000);
     $("#mBar").style.width = removed === 0 ? "0" : `max(3px, ${share * 100}%)`;
     const per1000 = Math.round(share * 1000);
-    let line = removed === 0 ? "The valley isn’t cleaning up anything yet."
-      : per1000 < 1 ? "The machines clean up less than 1 of every 1,000 tonnes."
-      : `The machines clean up about ${per1000} of every 1,000 tonnes.`;
-    if (Y >= 2058) line += " But nobody knows if that number is true.";
+    let line = removed === 0 ? "No direct air capture in the valley yet."
+      : per1000 < 1 ? "The DAC plants remove less than 1 of every 1,000 tonnes emitted."
+      : `The DAC plants remove about ${per1000} of every 1,000 tonnes emitted.`;
+    if (Y >= 2058) line += " But this number has not been verified.";
     $("#mRatio").textContent = line;
     const tag = $("#mTag");
     tag.textContent = imagined ? "Made up · future" : "Real";
@@ -362,7 +362,7 @@
         ["daniel", "The website, research, and the first letters in Story 1", "done"],
         ["breanna", "Story 1 · Letters from Grandma", ""],
         ["isabelle", "Story 2 · Texts Home", ""],
-        ["tooba", "Story 3 · The Counting Machine", ""],
+        ["tooba", "Story 3 · The Verification Log", ""],
         ["viena", "Story 4 · Notes from the Ice", ""],
         ["hannah", "Story 5 · The Court Case", ""],
       ];
@@ -396,7 +396,7 @@
   const STEPS = [
     { el: () => $("#ruler"), text: "This is the timeline. Drag it left or right to travel through time, or press ▶ to play." },
     { el: () => DOCS[0].pin, text: "Each pin on the map is a story. Grey pins unlock when you reach their year. Tap a pin to read it." },
-    { el: () => $(".meter"), text: "This box compares the pollution going into the sky with how much the machines clean up." },
+    { el: () => $(".meter"), text: "This box compares the CO₂ the world emits with how much the valley’s direct air capture (DAC) plants remove." },
     { el: () => $(".menu"), text: "Open the list of stories, the research behind them, or who made this. The round button switches dark mode." },
   ];
   let stepAt = 0, afterTour = null;
