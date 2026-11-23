@@ -40,8 +40,9 @@
   --gr: max(16px, env(safe-area-inset-right, 0px));
   color-scheme: light;
 }
+/* Night map: follows the device unless the theme button picks one */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --land: #1A201E; --floor: #1E2522; --contour: #2B3330; --lake: #1F3A48; --lake-ink: #7FB0C8;
     --road: #3A4440; --road-case: #262E2B; --label: #9AA39C; --cone: #262D2A; --cone2: #2C3430; --rim: #36403B;
     --route: #C9944F; --concession: #E07B52; --concession-bg: rgba(224, 123, 82, .12);
@@ -52,6 +53,17 @@
     color-scheme: dark;
   }
 }
+:root[data-theme="dark"] {
+  --land: #1A201E; --floor: #1E2522; --contour: #2B3330; --lake: #1F3A48; --lake-ink: #7FB0C8;
+  --road: #3A4440; --road-case: #262E2B; --label: #9AA39C; --cone: #262D2A; --cone2: #2C3430; --rim: #36403B;
+  --route: #C9944F; --concession: #E07B52; --concession-bg: rgba(224, 123, 82, .12);
+  --fan: #D6DED9; --dc: #8B7DF0; --steam: #CFE3EA; --boma: #B8925E;
+  --ui: #232A27; --ui-ink: #E8EDE9; --ui-muted: #9AA39C; --ui-line: #343C38;
+  --shadow: 0 6px 24px rgba(0, 0, 0, .45), 0 1px 3px rgba(0, 0, 0, .4);
+  --dialog: #232A27; --dialog-ink: #E8EDE9; --real: #5CC49A; --imagined: #E8875E; --needle: #E8EDE9;
+  color-scheme: dark;
+}
+.menu .theme { width: 36px; padding: 8px 0; font-size: 16px; line-height: 1; }
 
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }

@@ -349,6 +349,23 @@
   };
   document.querySelectorAll("[data-open]").forEach((b) => b.addEventListener("click", () => openSheet(SHEETS[b.dataset.open](), b.dataset.open)));
 
+  // ---------- light / dark ----------
+  const themeBtn = $("#theme"), root = document.documentElement;
+  const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  function paintThemeBtn() {
+    const dark = isDark();
+    themeBtn.textContent = dark ? "☀" : "☾";
+    themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+  }
+  try { const saved = localStorage.getItem("cv-theme"); if (saved) root.dataset.theme = saved; } catch (e) {}
+  themeBtn.addEventListener("click", () => {
+    root.dataset.theme = isDark() ? "light" : "dark";
+    try { localStorage.setItem("cv-theme", root.dataset.theme); } catch (e) {}
+    paintThemeBtn();
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintThemeBtn);
+  paintThemeBtn();
+
   // ---------- boot ----------
   function route() {
     const h = location.hash.slice(1);
