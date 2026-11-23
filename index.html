@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Carbon Valley 2061</title>
 <meta name="description" content="Speculative climate fiction from Kenya's Rift Valley, 2061. Drag through time, open the documents left behind.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ccircle cx=%278%27 cy=%278%27 r=%277%27 fill=%27%23C9673F%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500;600&family=Onest:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
-<link rel="stylesheet" href="style.css?v=cd841a94">
+<link rel="stylesheet" href="style.css?v=02a70613">
 </head>
 <body>
 <div id="app">
@@ -127,19 +128,12 @@
     <span class="tag" id="mTag">Real</span>
   </aside>
 
-  <!-- off-map destinations -->
-  <button class="edge edge-n" data-doc="5" aria-label="Open Notes from the Ice, Greenland">
-    <span class="arrow">↑</span><span>Greenland · 9,900 km</span>
-  </button>
-  <button class="edge edge-s" data-doc="2" aria-label="Open The Court Case, Arusha">
-    <span>Court case · Arusha</span><span class="arrow">↓</span>
-  </button>
-
   <!-- ===== DIALOG ===== -->
   <div class="dialog" id="dialog" hidden>
     <span class="dialog-tag" id="dTag">real</span>
     <p id="dText"></p>
     <span class="dialog-src" id="dSrc"></span>
+    <div class="dialog-actions" id="dActions"></div>
     <button class="dialog-next" id="dNext" aria-label="Dismiss">▼</button>
   </div>
 
@@ -153,6 +147,16 @@
     <p class="hint"><span>Drag the timeline</span><span><i></i>Real</span><span><i class="made"></i>Made up</span><span><i class="future"></i>Future</span></p>
   </div>
 
+  <!-- ===== GUIDED TOUR ===== -->
+  <div class="tour" id="tour" hidden>
+    <div class="tour-spot" id="tourSpot"></div>
+    <div class="tour-tip" id="tourTip" role="dialog" aria-live="polite">
+      <span class="tour-step" id="tourStep"></span>
+      <p id="tourText"></p>
+      <div class="tour-btns"><button class="tour-skip" id="tourSkip">Skip</button><button class="tour-next" id="tourNext">Next</button></div>
+    </div>
+  </div>
+
   <!-- ===== SHEET ===== -->
   <section class="sheet" id="sheet" aria-hidden="true">
     <div class="grip" id="grip"><span></span></div>
@@ -161,7 +165,7 @@
   </section>
 </div>
 
-<script src="data.js?v=c9c2c004"></script>
-<script src="app.js?v=5f507592"></script>
+<script src="data.js?v=7a63e3c1"></script>
+<script src="app.js?v=b7703212"></script>
 </body>
 </html>

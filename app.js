@@ -72,13 +72,13 @@
     const num = svgEl("text", { class: "num", x: 0, y: -26.5 }, bob);
     num.textContent = String(d.id).padStart(2, "0");
     const cap = svgEl("text", { class: "cap", x: 0, y: 14 }, g);
-    cap.textContent = d.title;
+    cap.textContent = d.cap || d.title;
+    if (d.sub) { const sub = svgEl("text", { class: "cap sub", x: 0, y: 27 }, g); sub.textContent = d.sub; }
     d.pin = g;
     const open = () => openDoc(d.id);
     g.addEventListener("click", open);
     g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
   });
-  document.querySelectorAll(".edge").forEach((b) => b.addEventListener("click", () => openDoc(+b.dataset.doc)));
 
   // ---------- ruler ----------
   const ruler = $("#ruler"), track = $("#track");
@@ -175,15 +175,31 @@
   }
 
   // play through time
-  let playing = 0;
+  // one year at a time; wait on events so they can be read, and stop on every new story
+  let playing = false, playTimer = 0;
   const playBtn = $("#play");
-  function stopPlay() { clearInterval(playing); playing = 0; playBtn.textContent = "▶"; playBtn.setAttribute("aria-label", "Play through the years"); }
-  playBtn.addEventListener("click", () => {
-    if (playing) return stopPlay();
+  function stopPlay() { playing = false; clearTimeout(playTimer); playBtn.textContent = "▶"; playBtn.setAttribute("aria-label", "Play through the years"); }
+  function playStep() {
+    if (!playing) return;
+    if (Math.round(year) >= END) return stopPlay();
+    goTo(Math.round(year) + 1, 450);
+    playTimer = setTimeout(() => {
+      if (!playing) return;
+      const ev = evYears.get(Math.round(year));
+      if (ev && ev.doc) return stopPlay();
+      playTimer = setTimeout(playStep, ev ? 4200 : 350);
+    }, 500);
+  }
+  function startPlay() {
     if (Math.round(year) >= END) setYear(START);
+    playing = true;
     playBtn.textContent = "❚❚"; playBtn.setAttribute("aria-label", "Pause");
-    playing = setInterval(() => { if (Math.round(year) >= END) return stopPlay(); goTo(Math.round(year) + 1, 500); }, 1300);
-  });
+    // read the current year's event first, if it has one
+    const ev = evYears.get(Math.round(year));
+    if (ev && !ev.doc) { showDialog(ev); playTimer = setTimeout(playStep, 4200); }
+    else playStep();
+  }
+  playBtn.addEventListener("click", () => (playing ? stopPlay() : startPlay()));
 
   // ---------- render the world for a year ----------
   const fmt = (n, d = 0) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -198,7 +214,6 @@
     DOCS.forEach((d) => {
       const locked = Y < d.unlock;
       if (d.pin) d.pin.classList.toggle("locked", locked);
-      if (d.edge) document.querySelector(`.edge-${d.edge}`).classList.toggle("locked", locked);
     });
 
     if (Y === shownYear) return;
@@ -230,7 +245,7 @@
     tag.classList.toggle("imagined", imagined);
 
     const ev = evYears.get(Y);
-    if (ev && !(fromDrag && drag)) showDialog(ev);
+    if (ev && !(fromDrag && drag) && $("#tour").hidden) showDialog(ev);
     else if (!ev) hideDialog();
     if (ev && ev.doc) {
       const d = DOCS.find((x) => x.id === ev.doc);
@@ -249,6 +264,12 @@
     tag.textContent = ev.real ? `real · ${ev.y}` : `imagined · ${ev.y}`;
     tag.classList.toggle("imagined", !ev.real);
     $("#dSrc").textContent = ev.src ? `Source: ${ev.src}` : "";
+    const ids = ev.docs || (ev.doc ? [ev.doc] : []);
+    const acts = $("#dActions");
+    acts.innerHTML = ids.map((id) => `<button class="read" data-read="${id}">Read Story ${id} ▸</button>`).join("")
+      + (ids.length && ev.y < END ? `<button class="keep" data-keep>Keep playing</button>` : "");
+    acts.querySelectorAll("[data-read]").forEach((b) => b.addEventListener("click", () => openDoc(+b.dataset.read)));
+    acts.querySelectorAll("[data-keep]").forEach((b) => b.addEventListener("click", () => { hideDialog(); startPlay(); }));
     if (reduce) { dText.textContent = ev.text; return; }
     let i = 0;
     dText.textContent = "";
@@ -268,7 +289,11 @@
     if (hash && location.hash !== "#" + hash) history.replaceState(null, "", "#" + hash);
     body.querySelectorAll("[data-doc]").forEach((b) => b.addEventListener("click", () => openDoc(+b.dataset.doc)));
     body.querySelectorAll("[data-jump]").forEach((b) => b.addEventListener("click", () => { closeSheet(); goTo(+b.dataset.jump, 900); }));
-    body.querySelectorAll("[data-begin]").forEach((b) => b.addEventListener("click", () => { closeSheet(); goTo(START, 700); setTimeout(() => playBtn.click(), 800); }));
+    body.querySelectorAll("[data-begin]").forEach((b) => b.addEventListener("click", () => {
+      closeSheet(); goTo(START, 700);
+      if (tourDone()) setTimeout(startPlay, 800); else setTimeout(() => startTour(startPlay), 800);
+    }));
+    body.querySelectorAll("[data-tour]").forEach((b) => b.addEventListener("click", () => { closeSheet(); setTimeout(() => startTour(), 400); }));
     $("#close").focus({ preventScroll: true });
   }
   function closeSheet() {
@@ -277,7 +302,7 @@
     if (location.hash) history.replaceState(null, "", location.pathname + location.search);
   }
   $("#close").addEventListener("click", closeSheet);
-  addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); });
+  addEventListener("keydown", (e) => { if (e.key === "Escape") { if (!tour.hidden) endTour(); else closeSheet(); } });
 
   // swipe the sheet down to close on phones
   const grip = $("#grip");
@@ -365,6 +390,46 @@
   });
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintThemeBtn);
   paintThemeBtn();
+
+  // ---------- guided tour: a spotlight and a tip for each part of the screen ----------
+  const tour = $("#tour"), spot = $("#tourSpot"), tip = $("#tourTip");
+  const STEPS = [
+    { el: () => $("#ruler"), text: "This is the timeline. Drag it left or right to travel through time, or press ▶ to play." },
+    { el: () => DOCS[0].pin, text: "Each pin on the map is a story. Grey pins unlock when you reach their year. Tap a pin to read it." },
+    { el: () => $(".meter"), text: "This box compares the pollution going into the sky with how much the machines clean up." },
+    { el: () => $(".menu"), text: "Open the list of stories, the research behind them, or who made this. The round button switches dark mode." },
+  ];
+  let stepAt = 0, afterTour = null;
+  const tourDone = () => { try { return localStorage.getItem("cv-tour") === "done"; } catch (e) { return false; } };
+  function startTour(then) {
+    afterTour = then || null;
+    stepAt = 0;
+    hideDialog(); stopPlay();
+    tour.hidden = false;
+    showStep();
+  }
+  function showStep() {
+    const s = STEPS[stepAt], r = s.el().getBoundingClientRect(), pad = 8;
+    Object.assign(spot.style, { left: r.left - pad + "px", top: r.top - pad + "px", width: r.width + pad * 2 + "px", height: r.height + pad * 2 + "px" });
+    $("#tourStep").textContent = `${stepAt + 1} of ${STEPS.length}`;
+    $("#tourText").textContent = s.text;
+    $("#tourNext").textContent = stepAt === STEPS.length - 1 ? "Start" : "Next";
+    const w = Math.min(340, innerWidth - 32);
+    tip.style.width = w + "px";
+    tip.style.left = Math.max(16, Math.min(innerWidth - w - 16, r.left + r.width / 2 - w / 2)) + "px";
+    if (r.top + r.height / 2 > innerHeight / 2) { tip.style.top = ""; tip.style.bottom = innerHeight - r.top + pad + 14 + "px"; }
+    else { tip.style.bottom = ""; tip.style.top = r.bottom + pad + 14 + "px"; }
+    $("#tourNext").focus({ preventScroll: true });
+  }
+  function endTour() {
+    tour.hidden = true;
+    try { localStorage.setItem("cv-tour", "done"); } catch (e) {}
+    const then = afterTour; afterTour = null;
+    if (then) then();
+  }
+  $("#tourNext").addEventListener("click", () => { if (++stepAt >= STEPS.length) endTour(); else showStep(); });
+  $("#tourSkip").addEventListener("click", endTour);
+  addEventListener("resize", () => { if (!tour.hidden) showStep(); });
 
   // ---------- boot ----------
   function route() {

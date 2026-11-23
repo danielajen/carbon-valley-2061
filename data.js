@@ -35,7 +35,7 @@ const EVENTS = [
   { y: 2052, real: false, text: "The valley is the biggest clean-up site on Earth. The world still pollutes about 60 times more than it cleans." },
   { y: 2058, real: false, text: "The computer that counts the clean-up is told to fake the numbers. Story 4 unlocked.", doc: 4 },
   { y: 2060, real: false, text: "A night shift at the machines. Story 3 unlocked.", doc: 3 },
-  { y: 2061, real: false, text: "The Maasai families take the companies to court. In Greenland, the ice keeps melting. Stories 2 and 5 unlocked.", doc: 2 },
+  { y: 2061, real: false, text: "The Maasai families take the companies to court. In Greenland, the ice keeps melting. Stories 2 and 5 unlocked.", doc: 2, docs: [2, 5] },
 ];
 
 const DOCS = [
@@ -75,7 +75,7 @@ const DOCS = [
   },
   {
     id: 2, title: "The Court Case", form: "A lawyer’s speech", place: "Court in Arusha, Tanzania", dates: "2061", unlock: 2061,
-    edge: "s", writers: ["hannah"], style: "Oral Argument",
+    at: [548, 500], cap: "The Court Case", sub: "in Arusha ↓", writers: ["hannah"], style: "Oral Argument",
     course: "Carbon credits pushing people off land, Peru (Week 10)",
     lede: "A lawyer stands up for the Maasai families against the companies.",
     body: null,
@@ -114,7 +114,7 @@ const DOCS = [
   },
   {
     id: 5, title: "Notes from the Ice", form: "A scientist’s notebook", place: "Greenland", dates: "2061", unlock: 2061,
-    edge: "n", writers: ["viena"], style: "Pumzi",
+    at: [380, 165], cap: "Notes from the Ice", sub: "in Greenland ↑", writers: ["viena"], style: "Pumzi",
     course: "Whose knowledge of ice counts (Week 8)",
     lede: "A scientist in Greenland watches the ice melt anyway.",
     body: null,
@@ -139,6 +139,7 @@ const STORY = `
     <div><kbd>?</kbd><span>Before 2026 is real. After 2026 is made up.</span></div>
   </div>
   <button class="begin" data-begin>Start in 2008</button>
+  <button class="again" data-tour>Show me how it works</button>
   <h3>Map key</h3>
   <ul class="key">
     <li><i class="k-pin"></i>A story. Grey means it hasn’t happened yet.</li>
