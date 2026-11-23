@@ -94,7 +94,7 @@ const DOCS = [
   {
     id: 5, title: "Field Notes from the Ice", form: "Field notebook", place: "Summit, Greenland", dates: "2061", unlock: 2061,
     edge: "n", writers: ["viena"], style: "Pumzi",
-    course: "Feminist glaciology (Week 8); our Module 2 ice core research",
+    course: "Feminist glaciology (Week 8); ice core research",
     lede: "A Greenlandic glaciologist drills one of the last deep cores as Camp Century's waste melts out.",
     body: null,
     pending: { who: "viena", items: ["Dated notebook entries from the Greenland ice sheet", "The ice that proved warming is going, while northern companies claim net zero with Kenyan credits", "No miracle fix. End on a small act of care, like Pumzi"] },
