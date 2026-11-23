@@ -64,7 +64,7 @@
   const pinLayer = $("#pins");
   DOCS.filter((d) => d.at).forEach((d) => {
     const lead = PEOPLE[d.writers[d.writers.length > 1 ? 1 : 0]];
-    const g = svgEl("g", { class: "pin", transform: `translate(${d.at[0]} ${d.at[1] - 8})`, tabindex: 0, role: "button", "aria-label": `Document ${d.id}: ${d.title}` }, pinLayer);
+    const g = svgEl("g", { class: "pin", transform: `translate(${d.at[0]} ${d.at[1] - 8})`, tabindex: 0, role: "button", "aria-label": `Story ${d.id}: ${d.title}` }, pinLayer);
     const bob = svgEl("g", { class: "bob" }, g);
     svgEl("path", { class: "stem", d: "M0,0 L-6,-14 A16,16 0 1 1 6,-14 Z" }, bob);
     const face = svgEl("circle", { class: "face", cx: 0, cy: -27, r: 13 }, bob);
@@ -294,26 +294,26 @@
   function docHTML(d) {
     const Y = Math.round(year);
     const head = `
-      <p class="eyebrow">Document ${String(d.id).padStart(2, "0")} · ${d.form}</p>
+      <p class="eyebrow">Story ${d.id} · ${d.form}</p>
       <h2>${d.title}</h2>
       <p class="lede">${d.lede}</p>
       <div class="facts-row">
         ${d.writers.map(chip).join("")}
         <span class="fact-chip">${d.place}, ${d.dates}</span>
-        <span class="fact-chip">After <em>&nbsp;${d.style}</em></span>
+        <span class="fact-chip">Inspired by&nbsp;<em>${d.style}</em></span>
         <span class="fact-chip">${d.course}</span>
       </div>`;
     if (Y < d.unlock) {
-      return head + `<div class="slot"><span class="stamp">LOCKED UNTIL ${d.unlock}</span><p>This document hasn’t been written yet in ${Y}. Move the timeline forward to reach it.</p><button class="begin" data-jump="${d.unlock}">Go to ${d.unlock}</button></div>`;
+      return head + `<div class="slot"><span class="stamp">LOCKED UNTIL ${d.unlock}</span><p>This story hasn’t happened yet in ${Y}. Move the timeline forward to reach it.</p><button class="begin" data-jump="${d.unlock}">Go to ${d.unlock}</button></div>`;
     }
     let html = head + (d.body || "");
     if (d.pending) {
       const p = PEOPLE[d.pending.who];
       html += `<div class="slot" style="--c:${p.color}">
-        <span class="stamp">AWAITING TEXT</span>
-        <div class="who"><i></i>${p.name}${d.body ? " continues the letters" : " is writing this document"}</div>
+        <span class="stamp">COMING SOON</span>
+        <div class="who"><i></i>Hints for ${p.name}</div><p>Make up your own story. These are just ideas to help.</p>
         <ul>${d.pending.items.map((i) => `<li>${i}</li>`).join("")}</ul>
-        <p>500–800 words, due to Daniel Thursday, Dec. 3</p>
+        <p>About 500–800 words. Send to Daniel by Thursday, Dec. 3.</p>
       </div>`;
     }
     return html;
@@ -325,7 +325,7 @@
     research: () => RESEARCH,
     docs: () => {
       const Y = Math.round(year);
-      return `<p class="eyebrow">The archive</p><h2>Five documents</h2><p class="lede">Each one is a different form, written by a different member of the group.</p>
+      return `<p class="eyebrow">The stories</p><h2>Five stories</h2><p class="lede">Each one is told a different way, by a different person in our group.</p>
         <ul class="doc-list">${DOCS.map((d) => {
           const c = PEOPLE[d.writers[d.writers.length > 1 ? 1 : 0]].color;
           const right = Y < d.unlock ? `<span class="lock">${d.unlock}</span>` : "";
@@ -334,12 +334,12 @@
     },
     team: () => {
       const rows = [
-        ["daniel", "Site, story, timeline, research · Doc 01 letters 2031–2036", "done"],
-        ["breanna", "Doc 01 · Letters to Naserian, 2041–2061", ""],
-        ["hannah", "Doc 02 · The Hearing", ""],
-        ["isabelle", "Doc 03 · Night Shift", ""],
-        ["tooba", "Doc 04 · Verification Log", ""],
-        ["viena", "Doc 05 · Field Notes from the Ice", ""],
+        ["daniel", "The website, research, and the first letters in Story 1", "done"],
+        ["breanna", "Story 1 · Letters from Grandma", ""],
+        ["hannah", "Story 2 · The Court Case", ""],
+        ["isabelle", "Story 3 · Texts Home", ""],
+        ["tooba", "Story 4 · The Counting Machine", ""],
+        ["viena", "Story 5 · Notes from the Ice", ""],
       ];
       const done = (k) => k === "daniel" || DOCS.some((d) => d.writers.includes(k) && d.body && !(d.pending && d.pending.who === k));
       return `<p class="eyebrow">Module 3 · Group 1</p><h2>Who made this</h2>

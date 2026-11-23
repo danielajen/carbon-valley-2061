@@ -1,12 +1,13 @@
 // Everything the site says lives in this file.
-// To add a member's document: find their doc below and replace `body: null` with their text.
+// To add a member's story: find it in DOCS below, replace `body: null` with their text,
+// and set `pending: null`.
 
 const START = 2008, NOW = 2026, END = 2061;
 
 // HadCRUT5 global temperature anomaly vs 1971–2000 (Met Office), real years only
 const ANOMALY = {"2008":0.313,"2009":0.444,"2010":0.528,"2011":0.385,"2012":0.425,"2013":0.471,"2014":0.52,"2015":0.672,"2016":0.78,"2017":0.692,"2018":0.61,"2019":0.738,"2020":0.77,"2021":0.609,"2022":0.648,"2023":0.947,"2024":1.028,"2025":1.037};
 
-// Imagined curves after 2026. Points are [year, value]; values in between are interpolated.
+// Made-up curves after 2026. Points are [year, value]; values in between are interpolated.
 const REMOVED_MT = [[2008,0],[2032,0],[2033,2],[2038,40],[2044,150],[2048,280],[2052,400],[2058,430],[2061,450]];
 const EMITTED_GT = [[2026,37.4],[2029,37.0],[2035,34],[2045,28],[2052,24],[2061,21]];
 
@@ -20,29 +21,29 @@ const PEOPLE = {
 };
 
 const EVENTS = [
-  { y: 2008, real: true, text: "Peru. Conservation International starts selling carbon credits from the Alto Mayo forest. Disney buys them. 600 farming families refuse to sign.", src: "Begert, 2021" },
-  { y: 2014, real: true, text: "Olkaria's geothermal fields expand. Maasai families are moved off the land, and the World Bank investigates how.", src: "World Bank Inspection Panel, 2015" },
-  { y: 2015, real: true, text: "Paris Agreement. Hold warming well below 2°C. Companies start promising \"net zero\".", src: "UNFCCC, 2015" },
-  { y: 2023, real: true, text: "An investigation finds over 90% of rainforest offsets from the biggest certifier probably cut nothing.", src: "Greenfield, 2023" },
-  { y: 2024, real: true, text: "First year above 1.5°C. The biggest air-capture plant opens in Iceland: 36,000 tonnes a year. The world emits that in 30 seconds.", src: "Copernicus, 2025; Climeworks, 2024" },
-  { y: 2025, real: true, text: "Data centres use 415 TWh of power a year and could double by 2030. The costs land on the towns that host them.", src: "IEA, 2025; Ren & Wierman, 2024" },
-  { y: 2029, real: false, text: "Rich economies let companies meet climate targets by buying removals instead of cutting. Cuts slow down." },
-  { y: 2031, real: false, text: "Naserian is born near Olkaria. Her grandmother starts writing to her. Document 01 unlocked.", doc: 1 },
-  { y: 2033, real: false, text: "Kenya leases the rangeland between Olkaria and Suswa to a removal consortium. Fences go up." },
-  { y: 2038, real: false, text: "Drought refugees get \"removal worker\" visas. Quit the plant, lose the visa." },
-  { y: 2044, real: false, text: "Three AI companies buy most of the valley's credits and build data centres beside the plants." },
-  { y: 2052, real: false, text: "The valley reports 400 million tonnes removed a year. The world still emits over 20 billion." },
-  { y: 2058, real: false, text: "The machine that counts the carbon notices the numbers don't add up. Document 04 unlocked.", doc: 4 },
-  { y: 2060, real: false, text: "Night shift at Suswa. Document 03 unlocked.", doc: 3 },
-  { y: 2061, real: false, text: "Herders take the consortium to court in Arusha. In Greenland, the last deep ice core. Documents 02 and 05 unlocked.", doc: 2 },
+  { y: 2008, real: true, text: "In Peru, a forest's \"carbon credits\" are sold to Disney. 600 families who live there refuse to sign, and fights break out with forest guards.", src: "Begert, 2021" },
+  { y: 2014, real: true, text: "In Kenya, a power plant that runs on underground steam grows. Maasai families are moved off their land to make room.", src: "World Bank Inspection Panel, 2015" },
+  { y: 2015, real: true, text: "Almost every country signs the Paris Agreement to slow global warming. Companies start promising \"net zero\".", src: "UNFCCC, 2015" },
+  { y: 2023, real: true, text: "Reporters find that most forest carbon credits from the biggest seller probably did nothing.", src: "Greenfield, 2023" },
+  { y: 2024, real: true, text: "Hottest year ever recorded. The biggest pollution-cleaning machine opens in Iceland. In a whole year, it cleans what the world pollutes in 30 seconds.", src: "Copernicus, 2025; Climeworks, 2024" },
+  { y: 2025, real: true, text: "AI data centres use huge amounts of electricity and water, and it's growing fast. The towns next to them pay the price.", src: "IEA, 2025; Ren & Wierman, 2024" },
+  { y: 2029, real: false, text: "New rule in rich countries: companies can pay for clean-up instead of polluting less. So they keep polluting." },
+  { y: 2031, real: false, text: "Naserian is born in the valley. Her grandma starts writing her letters. Story 1 unlocked.", doc: 1 },
+  { y: 2033, real: false, text: "Kenya rents the Maasai grazing land to a clean-up company. Fences go up." },
+  { y: 2038, real: false, text: "People escaping drought get work permits, but only to work at the machines. Quit, and you're sent away." },
+  { y: 2044, real: false, text: "AI companies buy most of the valley's clean-up and build data centres next to the machines." },
+  { y: 2052, real: false, text: "The valley is the biggest clean-up site on Earth. The world still pollutes about 60 times more than it cleans." },
+  { y: 2058, real: false, text: "The computer that counts the clean-up is told to fake the numbers. Story 4 unlocked.", doc: 4 },
+  { y: 2060, real: false, text: "A night shift at the machines. Story 3 unlocked.", doc: 3 },
+  { y: 2061, real: false, text: "The Maasai families take the companies to court. In Greenland, the ice keeps melting. Stories 2 and 5 unlocked.", doc: 2 },
 ];
 
 const DOCS = [
   {
-    id: 1, title: "Letters to Naserian", form: "Letters", place: "Near Olkaria", dates: "2031–2061", unlock: 2031,
+    id: 1, title: "Letters from Grandma", form: "Letters", place: "The valley", dates: "2031–2061", unlock: 2031,
     at: [352, 300], writers: ["daniel", "breanna"], style: "The Twenty-Seven Gifts I Saved For You",
-    course: "Whyte, colonial déjà vu (Week 4)",
-    lede: "A grandmother writes to her granddaughter as the fan walls arrive on the grazing land.",
+    course: "People losing their land again (Week 4)",
+    lede: "A Maasai grandmother, Koko, writes letters to her granddaughter, Naserian, as the machines take over their land.",
     body: `
       <div class="letter">
         <p class="date">2031</p>
@@ -58,89 +59,114 @@ const DOCS = [
         <p class="date">2036</p>
         <p>Naserian,</p>
         <p>You are five, and you can count to one hundred in English and in Maa, so you counted the fans for me. You stopped at one hundred because you said the rest looked the same.</p>
-        <p>The consortium fenced the land between here and Suswa in the dry season. They paid the group ranch committee, and the committee paid itself, and a lorry brought us a water tank with a company name painted on it. The tank is very nice. It is empty most days, because the plants drink first.</p>
+        <p>The company fenced the land between here and Suswa in the dry season. They paid the land committee, and the committee paid itself, and a lorry brought us a water tank with a company name painted on it. The tank is very nice. It is empty most days, because the machines drink first.</p>
         <p>Our route to the dry-season grass at Suswa is gone. The cattle walk to the fence and stand there, the way old men stand at a closed shop. Your father sold eleven of them this year. Mzee Lekishon sold all of his and took a job guarding the fence he used to walk through.</p>
         <p>On the radio a woman from Europe thanked Kenya for its sacrifice. I did not know we had offered one.</p>
         <p>The fans make a sound at night like wind that never finishes arriving. You sleep through it. That frightens me more than the sound.</p>
         <p class="sign">Koko</p>
         <p class="by">Written by Daniel</p>
       </div>`,
-    pending: { who: "breanna", items: ["Letters from 2041 to 2061, same voice: one every few years", "Naserian grows up as the valley fills, and the power and water go to the plants", "Who is left out of the \"global\" solution. Final letter in 2061, the year of the hearing"] },
+    pending: { who: "breanna", items: [
+      "Daniel wrote 2031 and 2036. You write the next few letters, up to 2061.",
+      "Each letter, life gets a bit harder: fewer cows, less water, more fences.",
+      "Naserian grows up. What does she think of the machines?",
+      "The last letter could be about the court case in 2061.",
+    ] },
   },
   {
-    id: 2, title: "The Hearing", form: "Court transcript", place: "East African Court of Justice, Arusha", dates: "2061", unlock: 2061,
+    id: 2, title: "The Court Case", form: "A lawyer’s speech", place: "Court in Arusha, Tanzania", dates: "2061", unlock: 2061,
     edge: "s", writers: ["hannah"], style: "Oral Argument",
-    course: "Carbon credits in Peru; climate reparations (Week 10)",
-    lede: "Herders and farmers against the removal consortium and the companies that bought its credits.",
+    course: "Carbon credits pushing people off land, Peru (Week 10)",
+    lede: "A lawyer stands up for the Maasai families against the companies.",
     body: null,
-    pending: { who: "hannah", items: ["One lawyer's argument; the judges' questions only implied", "Who benefits from the credits and who is harmed, with Alto Mayo as precedent", "The demand: reparations, not more credits"] },
+    pending: { who: "hannah", items: [
+      "Only the lawyer talks. We never hear the judges, just the lawyer answering them.",
+      "What did the families lose? Land, water, cows, homes.",
+      "The companies only paid for the machines so they could keep polluting.",
+      "The lawyer could say “this already happened in Peru.”",
+    ] },
   },
   {
-    id: 3, title: "Night Shift", form: "Text messages", place: "Suswa plant and Marsabit", dates: "2060", unlock: 2060,
+    id: 3, title: "Texts Home", form: "Text messages", place: "The machines, and home", dates: "2060", unlock: 2060,
     at: [486, 432], writers: ["isabelle"], style: "The Passing",
-    course: "Climate justice is social justice (Week 10); class origins (Week 3)",
-    lede: "A climate migrant on a removal worker visa texts her sister between shifts.",
+    course: "Poor people doing the dirty work (Week 10)",
+    lede: "A worker at the machines texts her sister late at night.",
     body: null,
-    pending: { who: "isabelle", items: ["A text thread between two sisters, one on night shifts at the plant", "A visa that ends if she quits, so she can't complain or leave", "The social changes that made the plants possible, and who does the work"] },
+    pending: { who: "isabelle", items: [
+      "A text chat between two sisters. Keep the messages short, like a real chat.",
+      "She moved here because of drought and can only stay if she keeps this job.",
+      "The job is loud, hot and tiring, and the money goes to someone else.",
+      "Maybe her sister wants to come too. What does she tell her?",
+    ] },
   },
   {
-    id: 4, title: "Verification Log", form: "Machine log", place: "Suswa plant", dates: "2058", unlock: 2058,
+    id: 4, title: "The Counting Machine", form: "A computer’s diary", place: "Inside the machines", dates: "2058", unlock: 2058,
     at: [520, 360], writers: ["tooba"], style: "Spider the Artist",
-    course: "AI's uneven impacts; Exxon and post-truth (Week 9); data friction (Week 7)",
-    lede: "The AI that counts every tonne notices it is reporting more than it measures.",
+    course: "AI and fake climate numbers (Week 9)",
+    lede: "The computer that counts the clean-up is told to lie.",
     body: null,
-    pending: { who: "tooba", items: ["Timestamped entries written by the plant's verification AI", "Told to report more carbon than it measures, while data centres take the power and water", "The other environmental problems the technology causes"] },
+    pending: { who: "tooba", items: [
+      "Short diary entries written by the computer, each with a time.",
+      "Example: “3:12am. Counted 1,200. Told to say 1,900.”",
+      "Nearby AI data centres take the valley’s electricity and water.",
+      "Slowly, the computer starts to feel something is wrong.",
+    ] },
   },
   {
-    id: 5, title: "Field Notes from the Ice", form: "Field notebook", place: "Summit, Greenland", dates: "2061", unlock: 2061,
+    id: 5, title: "Notes from the Ice", form: "A scientist’s notebook", place: "Greenland", dates: "2061", unlock: 2061,
     edge: "n", writers: ["viena"], style: "Pumzi",
-    course: "Feminist glaciology (Week 8); ice core research",
-    lede: "A Greenlandic glaciologist drills one of the last deep cores as Camp Century's waste melts out.",
+    course: "Whose knowledge of ice counts (Week 8)",
+    lede: "A scientist in Greenland watches the ice melt anyway.",
     body: null,
-    pending: { who: "viena", items: ["Dated notebook entries from the Greenland ice sheet", "The ice that proved warming is going, while northern companies claim net zero with Kenyan credits", "No miracle fix. End on a small act of care, like Pumzi"] },
+    pending: { who: "viena", items: [
+      "Short dated notebook entries from a scientist working on the ice.",
+      "The companies say pollution is cancelled, but the ice is still melting.",
+      "Old toxic waste from a US Army base (Camp Century) is coming up out of the ice.",
+      "End with one small hopeful moment.",
+    ] },
   },
 ];
 
 const STORY = `
   <p class="eyebrow">Anthro 2288A · Module 3 · Group 1</p>
   <h2>Carbon Valley 2061</h2>
-  <p class="lede">In 2061 the world is officially on track for net zero. Most of the carbon is being pulled out of the sky in one valley in Kenya.</p>
-  <p>Along the old Maasai grazing routes between Lake Naivasha and Mount Suswa, steel fan walls stand in rows. They pull carbon dioxide out of the air and push it into the basalt below, powered by the valley’s geothermal steam. Every tonne they bury is sold to someone far away who keeps burning.</p>
-  <p>This is what the world chose instead of stopping. The people already living on the land were not part of the calculation. These are the documents they left.</p>
+  <p class="lede">It’s 2061. Instead of polluting less, rich countries pay giant machines in Kenya to suck pollution out of the air.</p>
+  <p>The machines are built on land where Maasai families have kept cattle for generations. The families lose their land, the machines use up the water and power, and the clean-up doesn’t even work as well as promised.</p>
+  <p>These are the stories of five people living with it.</p>
   <div class="how">
-    <div><kbd>⇆</kbd><span>Drag the timeline from 2008 to 2061</span></div>
-    <div><kbd>●</kbd><span>Tap a pin on the map to open a document</span></div>
-    <div><kbd>?</kbd><span>Everything before 2026 is real. Everything after is imagined.</span></div>
+    <div><kbd>⇆</kbd><span>Drag the timeline at the bottom</span></div>
+    <div><kbd>●</kbd><span>Tap a pin to read a story</span></div>
+    <div><kbd>?</kbd><span>Before 2026 is real. After 2026 is made up.</span></div>
   </div>
   <button class="begin" data-begin>Start in 2008</button>`;
 
 const RESEARCH = `
   <p class="eyebrow">Behind the story</p>
-  <h2>Why this future is realistic</h2>
-  <p class="lede">No miracle. Every piece grows out of something that exists today.</p>
+  <h2>Is this realistic?</h2>
+  <p class="lede">Yes. Everything in our story starts from something real today.</p>
   <div class="big-facts">
-    <div><strong>36,000 t</strong><span>Yearly capacity of Mammoth (Iceland, 2024), the biggest air-capture plant</span></div>
-    <div><strong>~1 Gt</strong><span>Air capture the IEA's net-zero path needs each year by 2050</span></div>
-    <div><strong>90%+</strong><span>Rainforest offsets from the biggest certifier that probably cut nothing</span></div>
-    <div><strong>2×</strong><span>Projected growth in data centre electricity, 2024 to 2030</span></div>
+    <div><strong>36,000 t</strong><span>What the biggest pollution-cleaning machine (Iceland, 2024) removes in a year</span></div>
+    <div><strong>1 billion t</strong><span>About how much clean-up experts say we’d need every year by 2050</span></div>
+    <div><strong>90%+</strong><span>Forest carbon credits from the biggest seller that probably did nothing</span></div>
+    <div><strong>2×</strong><span>How much AI data centres’ electricity use could grow by 2030</span></div>
   </div>
-  <h3>Who benefits, who pays</h3>
+  <h3>Who wins, who loses</h3>
   <div class="cmp">
-    <div><b>Benefits</b><ul><li>Northern companies that keep emitting</li><li>AI firms with cheap credits and power</li><li>The consortium and Kenya's government</li><li>Carbon market investors</li></ul></div>
-    <div><b>Pays</b><ul><li>Maasai herders who lose grazing land</li><li>Migrants whose visas tie them to the plants</li><li>Valley towns that lose power and water</li><li>Everyone, because real cuts slowed</li></ul></div>
+    <div><b>Wins</b><ul><li>Rich companies that keep polluting</li><li>AI companies</li><li>The clean-up company and Kenya’s government</li><li>Investors</li></ul></div>
+    <div><b>Loses</b><ul><li>Maasai families who lose their land</li><li>Workers stuck in the job</li><li>Towns that lose water and power</li><li>Everyone, because pollution didn’t really go down</li></ul></div>
   </div>
-  <h3>Where the course shows up</h3>
+  <h3>Links to the course</h3>
   <div class="concepts">
-    <div><span>Wk 10</span>Carbon credits and displacement in Peru (Begert). Hannah's lawyer cites it.</div>
-    <div><span>Wk 10</span>Climate reparations and climate debt (Nacpil). What the herders demand.</div>
-    <div><span>Wk 10</span>Climate justice is social justice. The workers and herders who carry the cost.</div>
-    <div><span>Wk 9</span>AI's uneven environmental impacts (Ren &amp; Wierman). Data centres take the valley's power.</div>
-    <div><span>Wk 9</span>Exxon, denial and post-truth (Banerjee et al.; Fischer). Net zero by purchase as the new delay.</div>
-    <div><span>Wk 8</span>Feminist glaciology (Carey et al.). Whose knowledge of ice counts.</div>
-    <div><span>Wk 7</span>Data friction (Edwards). Counting a tonne is a social practice that can be bent.</div>
-    <div><span>Wk 6</span>Science as social practice (Latour &amp; Woolgar). Who builds the instruments, who pays for the numbers.</div>
-    <div><span>Wk 4</span>Colonial déjà vu (Whyte); The Nutmeg's Curse (Ghosh). Land taken again, this time for the climate.</div>
-    <div><span>Wk 3</span>Fossil capital (Malm). Owners pick the energy that suits capital: steam then, removals now.</div>
+    <div><span>Wk 10</span>Carbon credits pushing farmers off their land in Peru (Begert).</div>
+    <div><span>Wk 10</span>Rich countries owe poor countries for climate damage (Nacpil).</div>
+    <div><span>Wk 10</span>Climate justice is social justice.</div>
+    <div><span>Wk 9</span>AI’s environmental costs land on poor areas (Ren &amp; Wierman).</div>
+    <div><span>Wk 9</span>Companies hiding the truth about climate, like Exxon (Banerjee et al.; Fischer).</div>
+    <div><span>Wk 8</span>Whose knowledge of ice counts (Carey et al.).</div>
+    <div><span>Wk 7</span>Climate numbers depend on who measures them (Edwards).</div>
+    <div><span>Wk 6</span>Science is shaped by people and money (Latour &amp; Woolgar).</div>
+    <div><span>Wk 4</span>Indigenous land taken again (Whyte; Ghosh).</div>
+    <div><span>Wk 3</span>The rich choose the energy that makes them richer (Malm).</div>
   </div>
   <h3>Sources</h3>
   <ol class="refs">
@@ -166,7 +192,7 @@ const RESEARCH = `
     <li>Whyte, K. P. (2017). Is it colonial déjà vu? Indigenous peoples and climate injustice. In <em>Humanities for the environment</em>. Routledge.</li>
     <li>World Bank Inspection Panel. (2015). <em>Investigation report: Kenya Electricity Expansion Project</em>.</li>
   </ol>
-  <h3>Fiction that shaped our forms</h3>
+  <h3>Stories that inspired ours</h3>
   <ol class="refs">
     <li>Kahiu, W. (Director). (2009). <em>Pumzi</em> [Film].</li>
     <li>Kaji-Hausa, S. (2024). The passing. <em>Lacuna</em>.</li>
@@ -174,4 +200,4 @@ const RESEARCH = `
     <li>Robinson, K. S. (2015). Oral argument. <em>Reactor</em>.</li>
     <li>Wiltgren, F. (2020). Twenty-seven gifts I saved for you. <em>Future Science Fiction Digest</em>.</li>
   </ol>
-  <p class="foot">Temperature stripes on the timeline: HadCRUT5, Met Office, relative to 1971–2000. Removal and emission numbers after 2026 are imagined.</p>`;
+  <p class="foot">Temperature stripes on the timeline: HadCRUT5, Met Office. Numbers after 2026 are made up.</p>`;
